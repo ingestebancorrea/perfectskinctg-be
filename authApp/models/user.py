@@ -30,7 +30,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     tipoUsuario = models.CharField("Tipo_Usuario", max_length=30)
    
     def save(self, **kwargs):
-        some_salt = 'qajfajkhfalfhakfeaklfhalfahkf'
+        some_salt = 'qP0nJ7zA8mA4zS4jV5qS8f'
         self.password = make_password(self.password, some_salt)
         super().save(**kwargs)
     
