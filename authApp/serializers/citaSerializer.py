@@ -4,4 +4,4 @@ from rest_framework import serializers
 class CitaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cita
-        fields = ['balance', 'lastChangeDate', 'isActive']
+        fields = ['cita_codigo', 'fecha', 'hora', 'lugar_servicio', 'cliente', 'empleado', 'estado']

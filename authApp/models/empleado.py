@@ -3,7 +3,7 @@ from .user import User
 
 class Empleado(models.Model):
     empleado_codigo = models.AutoField(primary_key=True)
-    codigo_usuario = models.ForeignKey(User, related_name='fk_empleados_usuarios', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='fk_empleados_usuarios', on_delete=models.CASCADE)
     cargo = models.CharField('Cargo', max_length=20)
     nombre = models.CharField('Nombre', max_length=20)
     apellidos = models.CharField('Apellidos', max_length=20)
