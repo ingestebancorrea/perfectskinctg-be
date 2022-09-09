@@ -1,5 +1,4 @@
-from .account import Account
 from .user import User
 from .cita import Cita
-from .servicio import Servicio
+from .cita import Cliente
 from .empleado import Empleado
