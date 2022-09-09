@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from authApp.models.cliente import Cliente
 from authApp.serializers.clienteSerializer import ClienteSerializer
 
-class UserDetailView(generics.RetrieveAPIView):
+class ClienteDetailView(generics.RetrieveAPIView):
     queryset = Cliente.objects.all()
     serializer_class = ClienteSerializer
     permission_classes = (IsAuthenticated,)
