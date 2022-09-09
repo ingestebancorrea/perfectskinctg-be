@@ -9,7 +9,7 @@ class ClienteSerializer(serializers.ModelSerializer):
         fields = ['cliente_codigo', 'user', 'nombre', 'apellidos', 'tipoDocumento', 'nroDocumento', 'sexo', 'telefono', 'email', 'direccion']
     
     def create(self, validated_data):
-        clienteData = validated_data.pop('cliente_codigo')
+        clienteData = validated_data.pop('cliente')
         userInstance = Cliente.objects.create(**validated_data)
         Cliente.objects.create(user=userInstance, **clienteData)
         return userInstance
