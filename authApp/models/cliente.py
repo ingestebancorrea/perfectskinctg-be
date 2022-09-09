@@ -8,7 +8,6 @@ class Cliente(models.Model):
     apellidos = models.CharField('Apellidos', max_length=20)
     tipoDocumento = models.CharField('Tipo Documento', max_length=20)
     nroDocumento = models.CharField('Numero Documento', max_length=15, unique=True)
-    sexo = models.CharField('Sexo', max_length=10)
     telefono = models.CharField('Telefono', max_length=15)
     email = models.CharField('Email', max_length=20)
     direccion = models.CharField('Direccion', max_length=40)
