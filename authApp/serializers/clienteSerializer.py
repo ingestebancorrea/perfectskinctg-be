@@ -6,7 +6,7 @@ class ClienteSerializer(serializers.ModelSerializer):
     user = UserSerializer()
     class Meta:
         model = Cliente
-        fields = ['id', 'user', 'nombre', 'apellidos', 'tipoDocumento', 'nroDocumento', 'sexo', 'telefono', 'email', 'direccion']
+        fields = ['codigo_cliente', 'user', 'nombre', 'apellidos', 'tipoDocumento', 'nroDocumento', 'sexo', 'telefono', 'email', 'direccion']
     
     def create(self, validated_data):
         userData = validated_data.pop('user')
@@ -16,7 +16,7 @@ class ClienteSerializer(serializers.ModelSerializer):
     
     def to_representation(self, obj):
         user = User.objects.get(id=obj.id)
-        cliente = Cliente.objects.get(user=obj.id)
+        cliente = Cliente.objects.get(codigo_cliente=obj.id)
         return {
             'codigo_cliente': cliente.codigo_cliente,
             'user': {
