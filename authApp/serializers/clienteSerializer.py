@@ -18,7 +18,7 @@ class ClienteSerializer(serializers.ModelSerializer):
         user = User.objects.get(id=obj.id)
         cliente = Cliente.objects.get(user=obj.id)
         return {
-            'id': cliente.id,
+            'codigo_cliente': cliente.codigo_cliente,
             'user': {
             'id': user.id,
             'username': user.username,
