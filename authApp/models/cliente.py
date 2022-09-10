@@ -2,7 +2,7 @@ from django.db import models
 from .user import User
 
 class Cliente(models.Model):
-    cliente_codigo = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, related_name='fk_clientes_usuarios', on_delete=models.CASCADE)
     nombre = models.CharField('Nombre', max_length=20)
     apellidos = models.CharField('Apellidos', max_length=20)
