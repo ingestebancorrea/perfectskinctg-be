@@ -15,23 +15,25 @@ class ClienteSerializer(serializers.ModelSerializer):
         return clienteInstance
     
     def to_representation(self, obj):
-        user = User.objects.get(id=obj.id)
-        cliente = Cliente.objects.get(codigo_cliente=obj.id)
-        return {
-            'codigo_cliente': cliente.codigo_cliente,
-            'user': {
-            'id': user.id,
-            'username': user.username,
-            'password': user.password,
-            'tipoUsuario': user.tipoUsuario
-            },
-            'nombre': cliente.nombre,
-            'apellidos': cliente.apellidos,
-            'tipoDocumento': cliente.tipoDocumento,
-            'nroDocumento': cliente.nroDocumento,
-            'sexo': cliente.sexo,
-            'telefono': cliente.telefono,
-            'email': cliente.email,
-            'direccion': cliente.direccion,
-            'estado': cliente.estado,
-        }
+        print(obj);
+        return{}
+        # user = User.objects.get(id=obj.id)
+        # cliente = Cliente.objects.get(codigo_cliente=obj.id)
+        # return {
+        #     'codigo_cliente': cliente.codigo_cliente,
+        #     'user': {
+        #     'id': user.id,
+        #     'username': user.username,
+        #     'password': user.password,
+        #     'tipoUsuario': user.tipoUsuario
+        #     },
+        #     'nombre': cliente.nombre,
+        #     'apellidos': cliente.apellidos,
+        #     'tipoDocumento': cliente.tipoDocumento,
+        #     'nroDocumento': cliente.nroDocumento,
+        #     'sexo': cliente.sexo,
+        #     'telefono': cliente.telefono,
+        #     'email': cliente.email,
+        #     'direccion': cliente.direccion,
+        #     'estado': cliente.estado,
+        # }
