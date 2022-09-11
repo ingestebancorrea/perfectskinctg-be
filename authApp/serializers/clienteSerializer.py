@@ -12,7 +12,7 @@ class ClienteSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         userData = validated_data.pop('user') #extrer primera parte del JSON "user" con pop
         clienteInstance = Cliente.objects.create(**validated_data) #enviar campos restantes
-        User.objects.create(**userData) 
+        User.objects.create(cliente=clienteInstance,**userData) 
         return clienteInstance
     
     #con los modelos y metodo get se convierte en un unico objeto
@@ -38,3 +38,9 @@ class ClienteSerializer(serializers.ModelSerializer):
             'tipoUsuario': user.tipoUsuario
             }
         }
+        
+# La relación se controla en el clienteSerializer, 
+# campo user con ayuda de UserSerializer, permite manejar la relación entra ambas entidades.
+
+# Sobreescritura de métodos 
+# create (crea al cliente con su respectivo usuario simultaneo)

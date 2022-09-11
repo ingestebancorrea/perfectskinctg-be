@@ -13,3 +13,5 @@ class Cliente(models.Model):
     email = models.CharField('Email', max_length=40)
     direccion = models.TextField()
     estado = models.CharField('Estado', max_length=10)
+
+#on_delete (para mantener integridad referencial de base de datos)
