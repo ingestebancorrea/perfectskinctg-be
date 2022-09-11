@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from authApp.models import Cliente,User
-from authApp.serializers.userSerializer import UserSerializer
+from .userSerializer import UserSerializer
 
 class ClienteSerializer(serializers.ModelSerializer):
     user = UserSerializer()
@@ -8,17 +8,18 @@ class ClienteSerializer(serializers.ModelSerializer):
         model = Cliente
         fields = ['id', 'nombre', 'apellidos', 'tipoDocumento', 'nroDocumento', 'sexo', 'telefono', 'email', 'direccion','estado', 'user']
     
+    #recibe un JSON convierte a objeto, **validated_data: manda argumentos en forma de diccionario
     def create(self, validated_data):
-        userData = validated_data.pop('user')
-        clienteInstance = Cliente.objects.create(**validated_data)
-        User.objects.create(cliente=clienteInstance, **userData)
+        userData = validated_data.pop('user') #extrer primera parte del JSON "user" con pop
+        clienteInstance = Cliente.objects.create(**validated_data) #enviar campos restantes
+        User.objects.create(cliente=clienteInstance, **userData) 
         return clienteInstance
     
+    #pasa un modelo a representation
     def to_representation(self, obj):
-        user = User.objects.get(id=obj.id)
-        cliente = Cliente.objects.get(user=obj.id)
-        # cliente = Cliente.objects.get(id=obj.id)
-        # user = User.objects.get(cliente=obj.id)
+        cliente = Cliente.objects.get(id=obj.id)
+        user = User.objects.get(cliente=obj.id)
+        #return{"contiene objeto de tipo JSON"}
         return {
             'id': cliente.id,
             'nombre': cliente.nombre,
