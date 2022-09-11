@@ -4,4 +4,4 @@ from authApp.models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'password', 'tipoUsuario']
+        fields = ['username', 'password', 'tipoUsuario']

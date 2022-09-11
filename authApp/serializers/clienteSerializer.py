@@ -6,7 +6,7 @@ class ClienteSerializer(serializers.ModelSerializer):
     user = UserSerializer()
     class Meta:
         model = Cliente
-        fields = ['codigo_cliente', 'user', 'nombre', 'apellidos', 'tipoDocumento', 'nroDocumento', 'sexo', 'telefono', 'email', 'direccion']
+        fields = ['id', 'nombre', 'apellidos', 'tipoDocumento', 'nroDocumento', 'sexo', 'telefono', 'email', 'direccion', 'user']
     
     def create(self, validated_data):
         userData = validated_data.pop('user')
@@ -15,16 +15,10 @@ class ClienteSerializer(serializers.ModelSerializer):
         return clienteInstance
     
     def to_representation(self, obj):
+        cliente = Cliente.objects.get(id=obj.id)
         user = User.objects.get(id=obj.id)
-        cliente = Cliente.objects.get(user=obj.id)
         return {
-            'cliente_codigo': cliente.codigo,
-            'user': {
-            'id': user.id,
-            'username': user.username,
-            'password': user.password,
-            'tipoUsuario': user.tipoUsuario
-            },
+            'id': cliente.id,
             'nombre': cliente.nombre,
             'apellidos': cliente.apellidos,
             'tipoDocumento': cliente.tipoDocumento,
@@ -34,4 +28,10 @@ class ClienteSerializer(serializers.ModelSerializer):
             'email': cliente.email,
             'direccion': cliente.direccion,
             'estado': cliente.estado,
+            'user': {
+            'id': user.id,
+            'username': user.username,
+            'password': user.password,
+            'tipoUsuario': user.tipoUsuario
+            }
         }
