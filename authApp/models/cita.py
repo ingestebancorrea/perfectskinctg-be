@@ -3,7 +3,7 @@ from .cliente import Cliente
 from .empleado import Empleado
 
 class Cita(models.Model):
-    cita_codigo = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     fecha = models.DateField('Fecha Cita', auto_now=False,auto_now_add=True)
     hora = models.CharField('Hora', max_length=10)
     lugar_servicio = models.CharField('Hora', max_length=20)
