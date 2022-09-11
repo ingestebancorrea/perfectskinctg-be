@@ -3,7 +3,7 @@ from .user import User
 
 class Cliente(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, related_name='clientes', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='cliente', on_delete=models.CASCADE)
     nombre = models.CharField('Nombre', max_length=20)
     apellidos = models.CharField('Apellidos', max_length=20)
     tipoDocumento = models.CharField('Tipo Documento', max_length=20)

@@ -8,14 +8,14 @@ class ClienteSerializer(serializers.ModelSerializer):
         model = Cliente
         fields = ['id', 'nombre', 'apellidos', 'tipoDocumento', 'nroDocumento', 'sexo', 'telefono', 'email', 'direccion','estado', 'user']
     
-    #recibe un JSON convierte a objeto, **validated_data: manda argumentos en forma de diccionario
+    #recibe un JSON y lo convierte a objeto, **validated_data: manda argumentos en forma de diccionario
     def create(self, validated_data):
         userData = validated_data.pop('user') #extrer primera parte del JSON "user" con pop
         clienteInstance = Cliente.objects.create(**validated_data) #enviar campos restantes
-        User.objects.create(cliente=clienteInstance, **userData) 
+        User.objects.create(**userData) 
         return clienteInstance
     
-    #pasa un modelo a representation
+    #con los modelos y metodo get se convierte en un unico objeto
     def to_representation(self, obj):
         cliente = Cliente.objects.get(id=obj.id)
         user = User.objects.get(cliente=obj.id)
