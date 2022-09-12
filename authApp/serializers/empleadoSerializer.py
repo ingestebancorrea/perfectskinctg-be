@@ -5,10 +5,10 @@ from authApp.serializers.userSerializer import UserSerializer
 class EmpleadoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Empleado
-        fields = ['balance', 'lastChangeDate', 'isActive']
+        fields = ['id', 'cargo', 'nombre', 'apellidos', 'tipoDocumento', 'nnroDocumento', 'sexo', 'telefono', 'email', 'direccion', 'estado', 'user']
     
     def create(self, validated_data):
-        empleadoData = validated_data.pop('empleado')
+        empleadoData = validated_data.pop('user')
         userInstance = User.objects.create(**validated_data)
         Empleado.objects.create(user=userInstance, **empleadoData)
         return userInstance
@@ -17,13 +17,7 @@ class EmpleadoSerializer(serializers.ModelSerializer):
         user = User.objects.get(id=obj.id)
         empleado = Empleado.objects.get(user=obj.id)
         return {
-            'empleado_codigo': empleado.empleado_codigo,
-            'user': {
-            'id': user.id,
-            'username': user.username,
-            'password': user.password,
-            'tipoUsuario': user.tipoUsuario
-            },
+            'id': empleado.id,
             'cargo': empleado.cargo,
             'nombre': empleado.nombre,
             'apellidos': empleado.apellidos,
@@ -34,4 +28,9 @@ class EmpleadoSerializer(serializers.ModelSerializer):
             'email': empleado.email,
             'direccion': empleado.direccion,
             'estado': empleado.estado,
+            'user': {
+            'username': user.username,
+            'password': user.password,
+            'tipoUsuario': user.tipoUsuario
+            }
         }
