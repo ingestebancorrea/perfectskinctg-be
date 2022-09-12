@@ -10,7 +10,7 @@ class ClienteSerializer(serializers.ModelSerializer):
     
     #recibe un JSON y lo convierte a objeto, **validated_data: manda argumentos en forma de diccionario
     def create(self, validated_data):
-        userData = validated_data.pop('user') #extrer primera parte del JSON "user" con pop
+        userData = validated_data.pop('user') #extrae primera parte del JSON "user" con pop
         clienteInstance = Cliente.objects.create(**validated_data) #enviar campos restantes
         User.objects.create(cliente=clienteInstance,**userData) 
         return clienteInstance
