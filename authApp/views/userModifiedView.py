@@ -3,7 +3,7 @@ from authApp.models.user import User
 from authApp.serializers.userSerializer import UserSerializer
 
 class UserModifiedViews(generics.RetrieveAPIView):
-    def put(self, request):
+    def put(request, pk=None):
         user = User.objects.filter(id = pk).first()
         user_serializer = UserSerializer(user, data = request.data)
         if user_serializer.is_valid:
