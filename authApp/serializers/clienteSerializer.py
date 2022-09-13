@@ -6,7 +6,7 @@ class ClienteSerializer(serializers.ModelSerializer):
     user = UserSerializer()
     class Meta:
         model = Cliente
-        fields = ['id', 'nombre', 'apellidos', 'tipoDocumento', 'nroDocumento', 'sexo', 'telefono', 'email', 'direccion','estado', 'user']
+        fields = ['id']
     
     #recibe un JSON y lo convierte a objeto, **validated_data: manda argumentos en forma de diccionario
     def create(self, validated_data):
@@ -22,16 +22,6 @@ class ClienteSerializer(serializers.ModelSerializer):
         #return{"contiene objeto de tipo JSON"}
         return {
             'id': cliente.id,
-            'nombre': cliente.nombre,
-            'apellidos': cliente.apellidos,
-            'tipoDocumento': cliente.tipoDocumento,
-            'nroDocumento': cliente.nroDocumento,
-            'sexo': cliente.sexo,
-            'telefono': cliente.telefono,
-            'email': cliente.email,
-            'direccion': cliente.direccion,
-            'estado': cliente.estado,
-            'user': user.id
         }
         
 # La relación se controla en el clienteSerializer, 

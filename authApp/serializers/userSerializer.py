@@ -4,7 +4,7 @@ from rest_framework import serializers
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'password', 'tipoUsuario']         # fields [es un arreglo de cadenas]
+        fields = ['id', 'username', 'password', 'nombre', 'apellidos', 'tipoDocumento', 'nroDocumento', 'email' 'tipoUsuario']         # fields [es un arreglo de cadenas]
 
     def create(self, validated_data):
         userInstance = User.objects.create(**validated_data)
@@ -17,6 +17,11 @@ class UserSerializer(serializers.ModelSerializer):
             'id': user.id,
             'username': user.username,
             'password': user.password,
+            'nombre': user.nombre,
+            'apellidos': user.apellidos,
+            'tipoDocumento': user.tipoDocumento,
+            'nroDocumento': user.nroDocumento,
+            'email': user.email,
             'tipoUsuario': user.tipoUsuario
             }
         }
