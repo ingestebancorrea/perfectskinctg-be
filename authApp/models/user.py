@@ -27,8 +27,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     id = models.BigAutoField(primary_key=True)
     username = models.CharField('Username', max_length=15, unique=True)
     password = models.CharField('Password', max_length=100)
+    nombre = models.CharField('Nombre', max_length=20)
+    apellidos = models.CharField('Apellidos', max_length=20)
+    tipoDocumento = models.CharField('Tipo Documento', max_length=20)
+    nroDocumento = models.CharField('Numero Documento', max_length=15, unique=True)
+    email = models.CharField('Email', max_length=40)
     tipoUsuario = models.CharField("Tipo_Usuario", max_length=30)
-   
+    estado = models.CharField('Estado', max_length=10)
+    
     def save(self, **kwargs):
         some_salt = 'qP0nJ7zA8mA4zS4jV5qS8f'
         self.password = make_password(self.password, some_salt)
