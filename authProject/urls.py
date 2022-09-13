@@ -8,7 +8,7 @@ urlpatterns = [
 path('admin', admin.site.urls),
 path('login/', TokenObtainPairView.as_view()),
 path('refresh/', TokenRefreshView.as_view()),
-path('user/', views.UserCreateView.as_view()),
+path('user/create', views.UserCreateView.as_view()),
 path('user/<int:pk>/', views.UserDetailView.as_view()),
 path('user/modified/', views.UserModifiedView.as_view()),
 path('cliente/', views.ClienteCreateView.as_view()),
