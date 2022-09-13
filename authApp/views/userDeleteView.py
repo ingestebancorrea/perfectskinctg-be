@@ -3,7 +3,7 @@ from rest_framework import generics
 from authApp.models.user import User
 from authApp.serializers.userSerializer import UserSerializer
 
-class UserModifiedViews(generics.RetrieveAPIView):
+class UserDeleteView(generics.RetrieveAPIView):
     def delete(request, pk=None):
         user = User.objects.filter(id = pk).first() #llamar consulta
         user.delete() 
