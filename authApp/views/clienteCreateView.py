@@ -1,6 +1,5 @@
 from rest_framework import views
 from rest_framework.response import Response
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from authApp.serializers.clienteSerializer import ClienteSerializer
 
 class ClienteCreateView(views.APIView):
@@ -12,4 +11,4 @@ class ClienteCreateView(views.APIView):
             return Response(cliente_serializer.data)
         return Response(cliente_serializer.errors)
     
-#variable data guarda la información serializada porque la guarda en JSON
+#variable data guarda la información serializada la guarda en JSON
