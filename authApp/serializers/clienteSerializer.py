@@ -31,9 +31,7 @@ class ClienteSerializer(serializers.ModelSerializer):
             'email': cliente.email,
             'direccion': cliente.direccion,
             'estado': cliente.estado,
-            'user': {
-            'id': user.id,
-            }
+            'user': user.id
         }
         
 # La relación se controla en el clienteSerializer, 
