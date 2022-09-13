@@ -6,9 +6,8 @@ from authApp.serializers.userSerializer import UserSerializer
 
 class UserModifiedView(views.APIView):
     def put(request, pk=None):
-        user = User.objects.filter(id = pk).first() #queryset++
+        user = User.objects.filter(id = pk).first() #queryset
         user_serializer = UserSerializer(user, data = request.data)
-        permission_classes = (IsAuthenticated,)
         
         if user_serializer.is_valid:
             user_serializer.save()
