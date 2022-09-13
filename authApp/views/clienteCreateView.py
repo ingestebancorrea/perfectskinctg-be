@@ -1,17 +1,15 @@
-from rest_framework import status, views
+from rest_framework import views
 from rest_framework.response import Response
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from authApp.serializers.clienteSerializer import ClienteSerializer
 
 class ClienteCreateView(views.APIView):
-    def post(self, request, *args, **kwargs):
-        serializer = ClienteSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
+    def post(self, request):
+        cliente_serializer = ClienteSerializer(data = request.data) #deserializa convierte en objeto
         
-        tokenData = {"username":request.data["username"],
-        "password":request.data["password"]}
-        tokenSerializer = TokenObtainPairSerializer(data=tokenData)
-        tokenSerializer.is_valid(raise_exception=True)
-        
-        return Response(tokenSerializer.validated_data, status=status.HTTP_201_CREATED)
+        if cliente_serializer.is_valid():
+            cliente_serializer.save()
+            return Response(cliente_serializer.data)
+        return Response(cliente_serializer.errors)
+    
+#variable data guarda la información serializada porque la guarda en JSON
