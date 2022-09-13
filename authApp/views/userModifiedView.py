@@ -4,7 +4,7 @@ from authApp.serializers.userSerializer import UserSerializer
 
 class UserModifiedViews(generics.RetrieveAPIView):
     def put(self, request):
-        user = user.objects.filter(id = pk).first()
+        user = User.objects.filter(id = pk).first()
         user_serializer = UserSerializer(user, data = request.data)
         if user_serializer.is_valid:
             user_serializer.save()
