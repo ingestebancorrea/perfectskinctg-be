@@ -33,9 +33,6 @@ class ClienteSerializer(serializers.ModelSerializer):
             'estado': cliente.estado,
             'user': {
             'id': user.id,
-            'username': user.username,
-            'password': user.password,
-            'tipoUsuario': user.tipoUsuario
             }
         }
         
