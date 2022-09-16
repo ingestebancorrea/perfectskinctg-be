@@ -1,6 +1,6 @@
 from rest_framework.views import APIView, status
 from rest_framework.response import Response
-
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from authApp.serializers.clienteSerializer import ClienteSerializer
 
 class ClienteCreateView(APIView):
@@ -9,7 +9,10 @@ class ClienteCreateView(APIView):
         
         if cliente.is_valid():
             cliente.save()
-            return Response(cliente.data,status=status.HTTP_201_CREATED)
+            tokenData = {"username":request.data["username"],
+                        "password":request.data["password"]}
+            tokenSerializer = TokenObtainPairSerializer(data=tokenData)
+            return Response(tokenSerializer.validated_data, status=status.HTTP_201_CREATED)
         else:
             return Response(status=status.HTTP_404_NOT_FOUND)
         
