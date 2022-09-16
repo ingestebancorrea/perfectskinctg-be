@@ -31,7 +31,7 @@ class UserSerializer(serializers.ModelSerializer):
              'email': user.email,
              'tipoUsuario': user.tipoUsuario,
              'Cliente':{
-                 'id': cliente.id
+                'id': cliente.id
              }
              }
      }
