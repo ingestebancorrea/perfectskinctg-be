@@ -20,7 +20,6 @@ class UserSerializer(serializers.ModelSerializer):
         user = User.objects.get(id=obj.id)
         cliente = Cliente.objects.get(user=obj.id) 
         return{ #return{"contiene objeto de tipo JSON"}
-             'user': {
              'id': user.id,
              'username': user.username,
              'password': user.password,
@@ -32,7 +31,6 @@ class UserSerializer(serializers.ModelSerializer):
              'tipoUsuario': user.tipoUsuario,
              'Cliente':{
                 'id': cliente.id
-             }
              }
      }
 
