@@ -5,15 +5,15 @@ from authApp.serializers.clienteSerializer import ClienteSerializer
 
 class ClienteCreateView(APIView):
     def post(self, request):
-        cliente = ClienteSerializer(data=request.data)
+        serializer = ClienteSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
         
-        if cliente.is_valid():
-            cliente.save()
-            tokenData = {"username":request.data["username"],
-                        "password":request.data["password"]}
-            tokenSerializer = TokenObtainPairSerializer(data=tokenData)
-            return Response(tokenSerializer.validated_data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+        tokenData = {"username":request.data["username"],
+                    "password":request.data["password"]}
+        tokenSerializer = TokenObtainPairSerializer(data=tokenData)
+        tokenSerializer.is_valid(raise_exception=True)
+        
+        return Response(tokenSerializer.validated_data, status=status.HTTP_201_CREATED)
         
 #variable data guarda la información serializada la guarda en JSON
