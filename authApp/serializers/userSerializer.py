@@ -29,7 +29,7 @@ class UserSerializer(serializers.ModelSerializer):
              'nroDocumento': user.nroDocumento,
              'email': user.email,
              'tipoUsuario': user.tipoUsuario,
-             'Cliente':{
+             'cliente':{
                 'id': cliente.id
              }
      }
