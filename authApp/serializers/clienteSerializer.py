@@ -17,8 +17,8 @@ class ClienteSerializer(serializers.ModelSerializer):
     
     #con los modelos y metodo get se convierte en un unico objeto
     def to_representation(self, obj):
-        user = User.objects.get(id=obj.id)
-        cliente = Cliente.objects.get(user=obj.id) 
+        cliente = Cliente.objects.get(id=obj.id) 
+        user = User.objects.get(cliente=obj.id)
         return { #return{"contiene objeto de tipo JSON"}
             'id': cliente.id,
             'user': {
