@@ -1,14 +1,16 @@
-from rest_framework import views, status
+from rest_framework import APIView, status
 from rest_framework.response import Response
+
 from authApp.serializers.clienteSerializer import ClienteSerializer
 
-class ClienteCreateView(views.APIView):
+class ClienteCreateView(APIView):
     def post(self, request):
-        cliente_serializer = ClienteSerializer(data = request.data) #deserializa convierte en objeto
+        cliente = ClienteSerializer(data=request.data)
         
-        if cliente_serializer.is_valid():
-            cliente_serializer.save()
-            return Response(cliente_serializer.data, status=status.HTTP_201_CREATED)
-        return Response(cliente_serializer.errors, status = status.HTTTP_400_BAD_REQUEST)
-    
+        if cliente.is_valid():
+            cliente.save()
+            return Response(cliente.data,status=status.HTTP_201_CREATED)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
 #variable data guarda la información serializada la guarda en JSON
