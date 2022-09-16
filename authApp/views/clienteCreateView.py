@@ -1,4 +1,4 @@
-from rest_framework import APIView, status
+from rest_framework.views import APIView, status
 from rest_framework.response import Response
 
 from authApp.serializers.clienteSerializer import ClienteSerializer
