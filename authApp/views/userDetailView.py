@@ -40,4 +40,10 @@ class UserDetailView(generics.RetrieveAPIView):
 
         return response
 
-    #def delete(request,pk):
+    def delete(self,request,pk):
+        item = User.objects.get(pk=pk)
+        item.delete()
+        
+        return Response({
+            'message': 'User Deleted Successfully'
+        })
