@@ -29,14 +29,15 @@ class UserDetailView(generics.RetrieveAPIView):
         serializer = UserSerializer(instance=item, data=request.data, partial=True) #Pasar instancia a actualizar y el dato al serializador
         response = Response()
         
-        if serializer.is_valid():
-            serializer.save()
-            response.data = {
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        response = Response()
+
+        response.data = {
             'message': 'Todo Updated Successfully',
             'data': serializer.data
-            }
-            return response
-        else:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-    
+        }
+
+        return response
+
     #def delete(request,pk):
