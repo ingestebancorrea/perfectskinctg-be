@@ -1,5 +1,4 @@
-from django.conf import settings
-
+from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -7,9 +6,9 @@ from authApp.models.categoria import Categoria
 from authApp.serializers.categoriaSerializer import CategoriaSerializer
 
 class CategoriaDetailView(APIView):
-    def get(self, request, pk):
+    def get(self, pk):
         if pk:
-            item = self.get_object(pk)
+            item = self.objects.get(pk)
             serializer = CategoriaSerializer(item)
         else:
             item = Categoria.objects.all()
