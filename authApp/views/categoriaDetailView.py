@@ -6,18 +6,16 @@ from authApp.models.categoria import Categoria
 from authApp.serializers.categoriaSerializer import CategoriaSerializer
 
 class CategoriaDetailView(APIView):
-    def get(self, request, pk):
+    def get_objet(self, pk):
         try:
-            item = Categoria.objects.get(pk=pk)
-            serializer = CategoriaSerializer(item, data=request.data)
-            serializer.is_valid(raise_exception=True)
-            response = Response()
-            response.data = {
-                'Categorias:': serializer.data
-            }
-            return response
+            return Categoria.objects.get(pk=pk)
         except Categoria.DoesNotExist:
             raise Http404
+        
+    def get(self, request, pk, format=None):
+        item = self.get_object(pk)
+        serializer = CategoriaSerializer(item)  
+        return Response(serializer.data)
 
     def put(self,request, pk=None):
         item = Categoria.objects.get(pk=pk) #obtener item a actualizar
