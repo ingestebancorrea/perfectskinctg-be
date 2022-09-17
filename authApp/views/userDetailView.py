@@ -24,7 +24,7 @@ class UserDetailView(generics.RetrieveAPIView):
         
         return super().get(request, *args, **kwargs)
     
-    def put(self,request, pk):
+    def put(self,request, pk=None):
         item = User.objects.get(pk=pk) #obtener item a actualizar
         serializer = UserSerializer(instance=item, data=request.data) #Pasar instancia a actualizar y el dato al serializador
         response = Response()
