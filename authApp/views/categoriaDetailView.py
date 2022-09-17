@@ -7,7 +7,7 @@ from authApp.serializers.categoriaSerializer import CategoriaSerializer
 
 class CategoriaDetailView(APIView):
     def get(self, request,pk):
-        item = self.get_object().categoria.all()
+        item = self.get_object(pk)
         serializer =  CategoriaSerializer(item, many=True)
         return Response(serializer.data)
     
