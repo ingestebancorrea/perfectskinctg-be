@@ -24,12 +24,19 @@ class UserDetailView(generics.RetrieveAPIView):
         
         return super().get(request, *args, **kwargs)
     
-    def put(request, pk):
+    def put(self,request, pk):
         item = User.objects.get(pk=pk) #obtener item a actualizar
-        data = UserSerializer(instance=item, data=request.data) #Pasar instancia a actualizar y el dato al serializador
+        serializer = UserSerializer(instance=item, data=request.data) #Pasar instancia a actualizar y el dato al serializador
+        response = Response()
         
-        if data.is_valid():
-            data.save()
-            return Response(data.data)
+        if serializer.is_valid():
+            serializer.save()
+            response.data = {
+            'message': 'Todo Updated Successfully',
+            'data': serializer.data
+            }
+            return response
         else:
             return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    #def delete(request,pk):
