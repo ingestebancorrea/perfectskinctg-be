@@ -6,7 +6,7 @@ class ServicioSerializer(serializers.ModelSerializer):
     categoria = CategoriaSerializer()
     class Meta:
         model = Servicio
-        fields = ['id', 'nombre', 'precio', 'stock', 'estado', 'categoria']
+        fields = ['id', 'nombre', 'precio', 'estado', 'categoria']
     
     def create(self, validated_data):
         categoriaData = validated_data.pop('categoria') 
@@ -21,7 +21,6 @@ class ServicioSerializer(serializers.ModelSerializer):
              'id': servicio.id,
              'nombre': servicio.nombre,
              'precio': servicio.precio,
-             'stock': servicio.stock,
              'estado': servicio.estado,
              'categoria':{
                 'id': categoria.id,
