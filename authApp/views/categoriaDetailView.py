@@ -6,20 +6,9 @@ from authApp.models.categoria import Categoria
 from authApp.serializers.categoriaSerializer import CategoriaSerializer
 
 class CategoriaDetailView(APIView):
-    def get_object(self, pk):
-        try:
-            return Categoria.objects.get(pk=pk)
-        except Categoria.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk=None, format=None):
-        if pk:
-            data = self.get_object(pk)
-        else:
-            data = Categoria.objects.all()
-
-        serializer = CategoriaSerializer(data, many=True)
-
+    def get(self, request):
+        items = Categoria.objects.all()
+        serializer = CategoriaSerializer(items, many=True)
         return Response(serializer.data)
 
     def put(self,request, pk=None):
@@ -43,5 +32,5 @@ class CategoriaDetailView(APIView):
         item.delete()
         
         return Response({
-            'message': 'User Deleted Successfully'
+            'message': 'Category Deleted Successfully'
         })
