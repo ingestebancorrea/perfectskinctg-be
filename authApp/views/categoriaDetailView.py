@@ -10,6 +10,7 @@ class CategoriaDetailView(APIView):
         try:
             item = Categoria.objects.get(pk=pk)
             serializer = CategoriaSerializer(item, data=request.data)
+            serializer.is_valid(raise_exception=True)
             response = Response()
             response.data = {
                 'Categorias:': serializer.data
