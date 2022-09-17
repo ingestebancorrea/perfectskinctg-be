@@ -4,4 +4,4 @@ from authApp.models import Cliente,User
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cliente
-        fields = ['__all__']
+        fields = ["__all__"]
