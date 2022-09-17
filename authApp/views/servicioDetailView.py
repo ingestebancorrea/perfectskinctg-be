@@ -3,8 +3,8 @@ from django.conf import settings
 from rest_framework import generics, status
 from rest_framework.response import Response
 
-from authApp.models.user import Servicio
-from authApp.serializers.userSerializer import ServicioSerializer
+from authApp.models.servicio import Servicio
+from authApp.serializers.servicioSerializer import ServicioSerializer
 
 class ServicioDetailView(generics.RetrieveAPIView):
     def get(self, request, pk):
