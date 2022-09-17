@@ -1,4 +1,4 @@
-from django.http.response import Http404
+from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -7,11 +7,9 @@ from authApp.serializers.categoriaSerializer import CategoriaSerializer
 
 class CategoriaDetailView(APIView):
     def get_object(self, pk):
-        try:
-            return Categoria.objects.get(pk=pk)
-        except Categoria.DoesNotExist:
-            raise Http404
-
+        categoria = get_object_or_404(Categoria, slug=self.kwargs.get("slug"))
+        return Categoria.objects.filter(categoria_id=categoria).order_by("-created")
+    
     def get(self, request, pk=None, format=None):
         if pk:
             data = self.get_object(pk)
