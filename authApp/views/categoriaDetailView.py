@@ -7,30 +7,30 @@ from authApp.serializers.categoriaSerializer import CategoriaSerializer
 
 class CategoriaDetailView(APIView):
     def get(self, request, pk):
-        item = self.object.get(pk=pk)
+        item = self.objects.get(pk=pk)
         serializer =  CategoriaSerializer(item, data=request.data)
         return Response(serializer.data)
     
-#     def put(self,request, pk):
-#         item = User.objects.get(pk=pk) #obtener item a actualizar
-#         serializer = UserSerializer(instance=item, data=request.data, partial=True) #Pasar instancia a actualizar y el dato al serializador, partial nos permitirá actualizar sin pasar todo el objeto
-#         response = Response()
+    def put(self,request, pk):
+        item = Categoria.objects.get(pk=pk) #obtener item a actualizar
+        serializer = CategoriaSerializer(instance=item, data=request.data, partial=True) #Pasar instancia a actualizar y el dato al serializador, partial nos permitirá actualizar sin pasar todo el objeto
+        response = Response()
         
-#         serializer.is_valid(raise_exception=True)
-#         serializer.save()
-#         response = Response()
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        response = Response()
 
-#         response.data = {
-#             'message': 'Todo Updated Successfully',
-#             'data': serializer.data
-#         }
+        response.data = {
+           'message': 'Todo Updated Successfully',
+            'data': serializer.data
+        }
 
-#         return response
+        return response
 
-#     def delete(self,request,pk):
-#         item = User.objects.get(pk=pk)
-#         item.delete()
+    def delete(self, pk):
+        item = Categoria.objects.get(pk=pk)
+        item.delete()
         
-#         return Response({
-#             'message': 'User Deleted Successfully'
-#         })
+        return Response({
+              'message': 'Category Deleted Successfully'
+        })
