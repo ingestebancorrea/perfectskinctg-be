@@ -11,5 +11,5 @@ path('refresh/', TokenRefreshView.as_view()),
 path('user/', views.UserCreateView.as_view()),
 path('user/<int:pk>/', views.UserDetailView.as_view()),
 path('categoria/', views.CategoriaCreateView.as_view()),
-path('categoria/<int:pk>/', views.CategoriaDetailView.as_view()),
+path('categoria/<str:pk>/', views.CategoriaDetailView.as_view()),
 ]
