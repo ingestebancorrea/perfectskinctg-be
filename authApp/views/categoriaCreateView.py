@@ -1,12 +1,12 @@
 from rest_framework import status, views
 from rest_framework.response import Response
 
-from authApp.serializers.servicioSerializer import ServicioSerializer
+from authApp.serializers.categoriaSerializer import CategoriaSerializer
 
-class ServicioCreateView(views.APIView):
-    def post(self,request):
+class CategoriaCreateView(views.APIView):
+    def post(self,request,format=None):
         item = request.data
-        serializer = ServicioSerializer(data=item)
+        serializer = CategoriaSerializer(data=item)
         
         serializer.is_valid(raise_exception=True) #Verificando si es valido
         serializer.save() #Crear en DB

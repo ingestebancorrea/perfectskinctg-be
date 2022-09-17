@@ -1,4 +1,4 @@
 from .userCreateView import UserCreateView
 from .userDetailView import UserDetailView
-from .servicioCreateView import ServicioCreateView
-from .servicioDetailView import ServicioDetailView
+from .categoriaCreateView import CategoriaCreateView
+from .categoriaDetailView import CategoriaDetailView

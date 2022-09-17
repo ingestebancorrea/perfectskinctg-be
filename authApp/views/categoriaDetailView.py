@@ -3,17 +3,17 @@ from django.conf import settings
 from rest_framework import generics, status
 from rest_framework.response import Response
 
-from authApp.models.servicio import Servicio
-from authApp.serializers.servicioSerializer import ServicioSerializer
+from authApp.models.categoria import Categoria
+from authApp.serializers.categoriaSerializer import CategoriaSerializer
 
-class ServicioDetailView(generics.RetrieveAPIView):
+class CategoriaDetailView(generics.RetrieveAPIView):
     def get(self, request, pk):
         if pk:
             item = self.get_object(pk)
-            serializer = ServicioSerializer(item)
+            serializer = CategoriaSerializer(item)
         else:
-            item = Servicio.objects.all()
-            serializer = ServicioSerializer(item, many=True)
+            item = Categoria.objects.all()
+            serializer = CategoriaSerializer(item, many=True)
 
             return Response(serializer.item)
         
