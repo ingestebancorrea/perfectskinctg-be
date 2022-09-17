@@ -6,16 +6,10 @@ from authApp.models.categoria import Categoria
 from authApp.serializers.categoriaSerializer import CategoriaSerializer
 
 class CategoriaDetailView(APIView):
-    def get(self, pk):
-        if pk:
-            item = Categoria.objects.get(pk=pk)
-            serializer = CategoriaSerializer(item)
-        else:
-            item = Categoria.objects.all()
-            serializer = CategoriaSerializer(item, many=True)
-
-            return Response(serializer.item)
-        
+    def get(self, request,pk):
+        item = self.get_object().categoria.all()
+        serializer =  CategoriaSerializer(item, many=True)
+        return Response(serializer.data)
     
 #     def put(self,request, pk):
 #         item = User.objects.get(pk=pk) #obtener item a actualizar
