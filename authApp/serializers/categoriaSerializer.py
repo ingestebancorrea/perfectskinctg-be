@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from authApp.models import Categoria, Servicio
-from .categoriaSerializer import ServicioSerializer
+from .servicioSerializer import ServicioSerializer
 
 class CategoriaSerializer(serializers.ModelSerializer):
     servicio = ServicioSerializer()
