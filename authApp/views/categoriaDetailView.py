@@ -6,8 +6,8 @@ from authApp.models.categoria import Categoria
 from authApp.serializers.categoriaSerializer import CategoriaSerializer
 
 class CategoriaDetailView(APIView):
-    def get(self, request,pk):
-        item = self.get_object(pk)
+    def get(self, pk):
+        item = self.object.get(pk)
         serializer =  CategoriaSerializer(item, many=True)
         return Response(serializer.data)
     
