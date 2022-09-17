@@ -11,10 +11,15 @@ class CategoriaDetailView(APIView):
             return Categoria.objects.get(pk=pk)
         except Categoria.DoesNotExist:
             raise Http404
-        
-    def get(self, pk):
-        item = self.get_object(pk)
-        serializer = CategoriaSerializer(item)  
+
+    def get(self, request, pk=None, format=None):
+        if pk:
+            data = self.get_object(pk)
+        else:
+            data = Categoria.objects.all()
+
+        serializer = CategoriaSerializer(data, many=True)
+
         return Response(serializer.data)
 
     def put(self,request, pk=None):
