@@ -34,7 +34,7 @@ class UserDetailView(generics.RetrieveAPIView):
         response = Response()
 
         response.data = {
-            'message': 'Todo Updated Successfully',
+            'message': 'User Updated Successfully',
             'data': serializer.data
         }
 
