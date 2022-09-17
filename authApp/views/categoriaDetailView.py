@@ -1,12 +1,12 @@
 from django.conf import settings
 
-from rest_framework import generics, status
+from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from authApp.models.categoria import Categoria
 from authApp.serializers.categoriaSerializer import CategoriaSerializer
 
-class CategoriaDetailView(generics.RetrieveAPIView):
+class CategoriaDetailView(APIView):
     def get(self, request, pk):
         if pk:
             item = self.get_object(pk)

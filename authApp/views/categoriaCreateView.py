@@ -14,7 +14,7 @@ class CategoriaCreateView(views.APIView):
         response = Response()
 
         response.data = {
-            'message': 'Todo Created Successfully',
+            'message': 'Created Successfully',
             'data': serializer.data
         }
 
