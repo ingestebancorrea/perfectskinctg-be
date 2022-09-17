@@ -21,7 +21,7 @@ class CategoriaDetailView(APIView):
         response = Response()
 
         response.data = {
-           'message': 'Todo Updated Successfully',
+           'message': 'Categoria Updated Successfully',
             'data': serializer.data
         }
 
