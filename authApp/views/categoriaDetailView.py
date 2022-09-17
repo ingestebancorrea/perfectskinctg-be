@@ -6,13 +6,13 @@ from authApp.models.categoria import Categoria
 from authApp.serializers.categoriaSerializer import CategoriaSerializer
 
 class CategoriaDetailView(APIView):
-    def get_objet(self, pk):
+    def get_object(self, pk):
         try:
             return Categoria.objects.get(pk=pk)
         except Categoria.DoesNotExist:
             raise Http404
         
-    def get(self, request, pk, format=None):
+    def get(self, pk):
         item = self.get_object(pk)
         serializer = CategoriaSerializer(item)  
         return Response(serializer.data)
