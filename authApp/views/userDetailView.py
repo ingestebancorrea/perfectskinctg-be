@@ -23,3 +23,13 @@ class UserDetailView(generics.RetrieveAPIView):
             return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
         
         return super().get(request, *args, **kwargs)
+    
+    def put(request, pk):
+        item = User.objects.get(pk=pk) #obtener item a actualizar
+        data = UserSerializer(instance=item, data=request.data) #Pasar instancia a actualizar y el dato al serializador
+        
+        if data.is_valid():
+            data.save()
+            return Response(data.data)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
