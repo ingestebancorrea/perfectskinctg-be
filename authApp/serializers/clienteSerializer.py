@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from authApp.models import Cliente,User
+from authApp.models import Cliente
 
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
