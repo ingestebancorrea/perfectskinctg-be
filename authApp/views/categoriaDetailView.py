@@ -39,7 +39,7 @@ class CategoriaDetailView(APIView):
         return response
 
     def delete(self, pk):
-        item = Categoria.objects.get(pk=pk)
+        item = self.objects.get(pk=pk)
         item.delete()
         
         return Response({
