@@ -8,7 +8,7 @@ from authApp.serializers.categoriaSerializer import CategoriaSerializer
 class CategoriaDetailView(APIView):
     def get(self, pk):
         if pk:
-            item = self.objects.get(pk=pk)
+            item = Categoria.objects.get(pk=pk)
             serializer = CategoriaSerializer(item)
         else:
             item = Categoria.objects.all()
