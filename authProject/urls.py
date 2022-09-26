@@ -6,8 +6,8 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter(trailing_slash=False)
-router.register(r'cita', views.CitaView, basename='cita')
-router.register(r'empleado', views.EmpleadoView, basename='empleado')
+router.register(r'citas/', views.CitaView, basename='citas')
+router.register(r'empleados/', views.EmpleadoView, basename='empleados')
 
 urlpatterns = [
 path('admin', admin.site.urls),
