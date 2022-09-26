@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 
-class TaskView(viewsets.ModelViewSet):
+class CitaView(viewsets.ModelViewSet):
     serializer_class = CitaSerializer
     queryset = Cita.objects.all()
     #permission_classes = (IsAuthenticated,)
