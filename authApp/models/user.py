@@ -8,7 +8,7 @@ class UserManager(BaseUserManager):
             raise ValueError("Users must have an username")
         
         user = self.model(username=username)
-        user.set_password(password)
+        user.set_password(str(password))
         user.save(using=self._db) 
         return user
     
