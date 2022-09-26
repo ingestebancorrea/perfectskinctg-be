@@ -8,7 +8,7 @@ class UserManager(BaseUserManager):
             raise ValueError("Users must have an username")
         
         user = self.model(username=username)
-        user.set_password(str(password))
+        user.set_password(password)
         user.save(using=self._db) 
         return user
     
@@ -36,7 +36,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     estado = models.CharField('Estado', max_length=10, default='Activo')
     
     def save(self, **kwargs):
-        some_salt = 'qP0nJ7zA8mA4zS4jV5qS8f'
+        some_salt = 'qP0nJ7zA8mA4zS4jV5qS8fqP0nJ7zA8mA4zS4jV5qS8f'
         self.password = make_password(self.password, some_salt)
         super().save(**kwargs)
     
