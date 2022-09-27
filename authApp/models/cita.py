@@ -9,6 +9,6 @@ class Cita(models.Model):
     hora = models.CharField('Hora', max_length=10)
     lugar = models.CharField('Hora', max_length=20)
     cliente = models.ForeignKey(Cliente, related_name='fk_citas_clientes', on_delete=models.CASCADE)
-    empleado = models.ForeignKey(Empleado, related_name='fk_citas_empleados', on_delete=models.CASCADE)
+    empleado = models.ForeignKey(Empleado, related_name='fk_citas_empleados', on_delete=models.CASCADE, null=True)
     servicio = models.ForeignKey(Servicio,related_name='fk_citas_servicios', on_delete=models.CASCADE)
     estado = models.CharField('Estado', max_length=10)
