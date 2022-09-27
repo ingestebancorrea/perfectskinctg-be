@@ -16,7 +16,7 @@ class CitaView(viewsets.ModelViewSet):
         return Response({'data': serializer.data})
 
     def retrieve(self, request, pk=None):
-        cita = get_object_or_404(Cita, id=pk)
+        cita = get_object_or_404(Cita, pk=pk)
         serializer = CitaSerializer(cita)
         return Response({'data': serializer.data})
 
