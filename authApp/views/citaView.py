@@ -12,7 +12,7 @@ class CitaView(viewsets.ModelViewSet):
     #permission_classes = (IsAuthenticated,)
 
     def list(self, request):
-        serializer = CitaSerializer(self.queryset.order_by("-due_date").filter(owner=9), many=True)
+        serializer = CitaSerializer(self.queryset.order_by("fecha").filter(owner=9), many=True)
         return Response({'data': serializer.data})
 
     def retrieve(self, request, pk=None):
