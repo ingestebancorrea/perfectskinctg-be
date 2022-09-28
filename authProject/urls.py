@@ -11,12 +11,12 @@ router.register(r'empleado', views.EmpleadoView, basename='empleado')
 
 urlpatterns = [
 path('admin', admin.site.urls),
-path('login', TokenObtainPairView.as_view()),
-path('refresh', TokenRefreshView.as_view()),
-path('user', views.UserCreateView.as_view()),
-path('user<int:pk>', views.UserDetailView.as_view()),
-path('categoria', views.CategoriaCreateView.as_view()),
-path('categoria<int:pk>', views.CategoriaDetailView.as_view()),
+path('login/', TokenObtainPairView.as_view()),
+path('refresh/', TokenRefreshView.as_view()),
+path('user/', views.UserCreateView.as_view()),
+path('user/<int:pk>/', views.UserDetailView.as_view()),
+path('categoria/', views.CategoriaCreateView.as_view()),
+path('categoria/<int:pk>/', views.CategoriaDetailView.as_view()),
 ]
 
 urlpatterns += router.urls
