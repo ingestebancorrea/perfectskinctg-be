@@ -1,6 +1,6 @@
 from rest_framework import status, viewsets
 from authApp import serializers
-from authApp.models import Empleado
+from authApp.models import Empleado, user
 from authApp.serializers import EmpleadoSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -12,7 +12,7 @@ class EmpleadoView(viewsets.ModelViewSet):
     #permission_classes = (IsAuthenticated,)
 
     def list(self, request):
-        serializer = EmpleadoSerializer(self.queryset.order_by("-due_date").filter(owner=9), many=True)
+        serializer = EmpleadoSerializer(self.queryset.order_by("id").filter(user=1), many=True)
         return Response({'data': serializer.data})
 
     def retrieve(self, request, pk=None):
