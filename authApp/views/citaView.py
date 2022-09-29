@@ -9,16 +9,16 @@ from django.shortcuts import get_object_or_404
 class CitaView(viewsets.ModelViewSet):
     serializer_class = CitaSerializer
     queryset = Cita.objects.all()
-    #permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def list(self, request):
         serializer = CitaSerializer(self.queryset.order_by("fecha").filter(cliente=1), many=True)
         return Response({'data': serializer.data})
 
     def retrieve(self, request, pk=None):
-        cita = get_object_or_404(Cita, pk=pk)
-        serializer = CitaSerializer(cita)
-        return Response({'data': serializer.data})
+       cita = get_object_or_404(Cita, id=pk)
+       serializer = CitaSerializer(cita)
+       return Response({'data': serializer.data})
 
     def update(self, request, pk=None):
         cita = Cita.objects.get(id=pk)
