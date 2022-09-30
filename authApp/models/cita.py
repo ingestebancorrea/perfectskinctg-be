@@ -2,7 +2,6 @@ from django.db import models
 from .cliente import Cliente
 from .empleado import Empleado
 from .servicio import Servicio
-from django import forms
 
 class Cita(models.Model):
     id = models.AutoField(primary_key=True)
@@ -14,9 +13,3 @@ class Cita(models.Model):
     servicio = models.ForeignKey(Servicio,related_name='fk_citas_servicios', on_delete=models.CASCADE)
     estado = models.CharField('Estado', max_length=10, default="Agendada")
     
-    def clean_validation(self):
-        fecha = self.clean_data.get('fecha')
-        hora = self.clean_data.get('hora')
-        if Cita.objects.filter(fecha=fecha).count() and Cita.objects.filter(hora=hora):
-            raise forms.ValidationError('La fecha y hora seleccionada ya se encuentra agendada')
-        return fecha,hora
