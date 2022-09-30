@@ -33,13 +33,8 @@ class CitaView(viewsets.ModelViewSet):
     def create(self, request):
         serializer = CitaSerializer(data=request.data)
         if serializer.is_valid():
-            fecha = self.cleaned_data.get('fecha')
-            
-            if Cita.objects.filter(fecha=fecha).count():
-                return Response({'status': 'error', 'error': serializer.errors})
-            else:
-                serializer.save()
-                return Response({'status': 'success','data': serializer.data}, status=status.HTTP_200_OK)
+            serializer.save()
+            return Response({'status': 'success','data': serializer.data}, status=status.HTTP_200_OK)
         else:
             return Response({'status': 'error', 'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
