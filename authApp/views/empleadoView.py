@@ -1,6 +1,6 @@
 from rest_framework import status, viewsets
 from authApp import serializers
-from authApp.models import Empleado, user
+from authApp.models import Empleado
 from authApp.serializers import EmpleadoSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
