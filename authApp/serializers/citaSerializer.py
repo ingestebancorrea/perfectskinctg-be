@@ -1,5 +1,10 @@
 from rest_framework import serializers
 from authApp.models import Cita
+#<<<<<<< Updated upstream
+
+
+from django import forms
+#>>>>>>> Stashed changes
 
 class CitaSerializer(serializers.ModelSerializer):
     class Meta:
