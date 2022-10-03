@@ -105,18 +105,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'authProject.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
-    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'd32mvc8hfhjotq',
-    'USER': 'paxkhyudpvhgiv',
-    'PASSWORD': 'f2934643e96e49d2ab450a3384bf259bbee633ec3bd6e9a2fd024465ecbb5a50',
-    'HOST': 'ec2-3-229-165-146.compute-1.amazonaws.com',
-    'PORT': '5432',
+    'ENGINE': 'django.db.backends.postgresql_psycopg2', 
+    'NAME': 'd4va288fjiqm5p',   
+    'USER': 'wlekynwcojngnn',   
+    'PASSWORD': '4d609a5a3d1f34e8e2ba547fa0e27d0736bd59b3c46c84113282119d3b16db99', 
+    'HOST': 'ec2-107-23-76-12.compute-1.amazonaws.com', 
+    'PORT': '5432', 
     }
 }
 
